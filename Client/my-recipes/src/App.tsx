@@ -1,5 +1,6 @@
-import { HomePage } from './component/Recipe/HomePage';
+import { HomePage } from './component/Home/HomePage';
 import '../public/style/index.scss';
+import 'primereact/resources/themes/lara-light-indigo/theme.css';
 
 function App() {
   return (

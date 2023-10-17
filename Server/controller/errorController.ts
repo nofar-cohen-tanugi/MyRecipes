@@ -56,10 +56,10 @@ export const globalErrorHandler = (err: AppError | CastError | MongoError, req: 
     }
     else if (process.env.NODE_ENV === 'production') {
         var error = { ...err };
-        if (error?.name == 'CastError' && 'path' in error && 'value' in error) {
+        if (err?.name == 'CastError' && 'path' in error && 'value' in error) {
             error = handleCastErrorDB(error?.path as Pick<CastError, "path">, error.value as Pick<CastError, "value">);
         }
-        if (error.code && error.code === 11000 &&
+        if (err.code && err.code === 11000 &&
             'keyValue' in error && error.keyValue && typeof error.keyValue === 'object'
             && 'title' in error.keyValue && error.keyValue.title && typeof error.keyValue.title === 'string') {
             error = handleDuplicateFieldsDB(error.keyValue.title);
